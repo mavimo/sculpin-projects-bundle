@@ -1,0 +1,33 @@
+{
+    "name": "mavimo/sculpin-projects-bundle",
+    "description": "Sculpin Projects Bundle",
+    "homepage": "https://sculpin.io",
+    "keywords": ["projects", "blogging", "blog", "static", "site"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Vito Moscaritolo",
+            "email": "marco@mavimo.org",
+            "homepage": "http://www.mavimo.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/config": "~2.1",
+        "symfony/dependency-injection": "~2.1",
+        "symfony/http-kernel": "~2.1",
+        "sculpin/taxonomy-contrib": "self.version",
+        "sculpin/proxy-source-collection-contrib": "self.version",
+        "sculpin/core": "self.version"
+    },
+    "autoload": {
+        "psr-0": { "Mavimo\\Bundle\\ProjectsBundle": "" }
+    },
+    "target-dir": "Mavimo/Bundle/ProjectsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    },
+    "minimum-stability": "beta"
+}

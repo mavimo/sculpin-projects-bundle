@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sculpin_projects.project.class">Mavimo\Bundle\ProjectsBundle\Project</parameter>
+        <parameter key="sculpin_projects.project_factory.class">Sculpin\Contrib\ProxySourceCollection\SimpleProxySourceItemFactory</parameter>
+        <parameter key="sculpin_projects.projects.class">Mavimo\Bundle\ProjectsBundle\Projects</parameter>
+        <parameter key="sculpin_projects.projects_path_filter.class">Sculpin\Core\Source\Filter\AntPathFilter</parameter>
+        <parameter key="sculpin_projects.projects_drafts_filter.class">Mavimo\Bundle\ProjectsBundle\ProjectsDraftsFilter</parameter>
+        <parameter key="sculpin_projects.projects_filter.class">Sculpin\Core\Source\Filter\ChainFilter</parameter>
+        <parameter key="sculpin_projects.projects_defaults_map.class">Sculpin\Core\Source\Map\DefaultDataMap</parameter>
+        <parameter key="sculpin_projects.projects_calculated_date_from_filename_map.class">Sculpin\Core\Source\Map\CalculatedDateFromFilenameMap</parameter>
+        <parameter key="sculpin_projects.projects_drafts_map.class">Mavimo\Bundle\ProjectsBundle\ProjectsDraftsMap</parameter>
+        <parameter key="sculpin_projects.projects_map.class">Sculpin\Core\Source\Map\ChainMap</parameter>
+        <parameter key="sculpin_projects.projects_data_provider.class">Sculpin\Contrib\ProxySourceCollection\ProxySourceCollectionDataProvider</parameter>
+        <parameter key="sculpin_projects.projects_tags_data_provider.class">Sculpin\Contrib\Taxonomy\ProxySourceTaxonomyDataProvider</parameter>
+        <parameter key="sculpin_projects.projects_tag_index_generator.class">Sculpin\Contrib\Taxonomy\ProxySourceTaxonomyIndexGenerator</parameter>
+        <parameter key="sculpin_projects.projects_categories_data_provider.class">Sculpin\Contrib\Taxonomy\ProxySourceTaxonomyDataProvider</parameter>
+        <parameter key="sculpin_projects.projects_category_index_generator.class">Sculpin\Contrib\Taxonomy\ProxySourceTaxonomyIndexGenerator</parameter>
+    </parameters>
+
+    <services>
+        <service id="sculpin_projects.projects" class="%sculpin_projects.projects.class%" />
+
+        <!-- match sources based on configured paths -->
+        <service id="sculpin_projects.projects_path_filter" class="%sculpin_projects.projects_path_filter.class%">
+            <argument>%sculpin_projects.paths%</argument>
+            <argument type="service" id="sculpin.matcher" />
+        </service>
+
+        <!-- match sources based on drafts flag -->
+        <service id="sculpin_projects.projects_drafts_filter" class="%sculpin_projects.projects_drafts_filter.class%">
+            <argument>%sculpin_projects.publish_drafts%</argument>
+        </service>
+
+        <service id="sculpin_projects.projects_filter" class="%sculpin_projects.projects_filter.class%">
+            <argument type="collection">
+                <!-- Order is important here! Filter path before drafts! -->
+                <argument type="service" id="sculpin_projects.projects_path_filter" />
+                <argument type="service" id="sculpin_projects.projects_drafts_filter" />
+            </argument>
+        </service>
+
+        <!-- map default permalink -->
+        <service id="sculpin_projects.projects_defaults_map" class="%sculpin_projects.projects_defaults_map.class%">
+            <argument type="collection">
+                <argument key="permalink">%sculpin_projects.permalink%</argument>
+                <argument key="layout">%sculpin_projects.layout%</argument>
+            </argument>
+            <tag name="sculpin_projects.projects_map" />
+        </service>
+
+        <!-- map calculated date from filename -->
+        <service id="sculpin_projects.projects_calculated_date_from_filename_map" class="%sculpin_projects.projects_calculated_date_from_filename_map.class%">
+            <tag name="sculpin_projects.projects_map" />
+        </service>
+
+        <!-- map drafts -->
+        <service id="sculpin_projects.projects_drafts_map" class="%sculpin_projects.projects_drafts_map.class%">
+            <tag name="sculpin_projects.projects_map" />
+        </service>
+
+        <service id="sculpin_projects.projects_map" class="%sculpin_projects.projects_map.class%" />
+
+        <service id="sculpin_projects.project_factory" class="%sculpin_projects.project_factory.class%">
+            <argument>%sculpin_projects.project.class%</argument>
+        </service>
+
+        <service id="sculpin_projects.projects_data_provider" class="%sculpin_projects.projects_data_provider.class%">
+            <argument type="service" id="sculpin.formatter_manager" />
+            <argument>projects</argument>
+            <argument type="service" id="sculpin_projects.projects" />
+            <argument type="service" id="sculpin_projects.projects_filter" />
+            <argument type="service" id="sculpin_projects.projects_map" />
+            <argument type="service" id="sculpin_projects.project_factory" />
+            <tag name="sculpin.data_provider" alias="projects" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="sculpin_projects.projects_tags_data_provider" class="%sculpin_projects.projects_tags_data_provider.class%">
+            <argument type="service" id="sculpin.data_provider_manager" />
+            <argument>projects</argument>
+            <argument>tags</argument>
+            <tag name="kernel.event_subscriber" />
+            <tag name="sculpin.data_provider" alias="projects_tags" />
+        </service>
+
+        <service id="sculpin_projects.projects_tag_index_generator" class="%sculpin_projects.projects_tag_index_generator.class%">
+            <argument type="service" id="sculpin.data_provider_manager" />
+            <argument>projects_tags</argument>
+            <argument>tag</argument>
+            <argument>tagged_projects</argument>
+            <tag name="sculpin.generator" alias="projects_tag_index" />
+        </service>
+
+        <service id="sculpin_projects.projects_categories_data_provider" class="%sculpin_projects.projects_categories_data_provider.class%">
+            <argument type="service" id="sculpin.data_provider_manager" />
+            <argument>projects</argument>
+            <argument>categories</argument>
+            <tag name="kernel.event_subscriber" />
+            <tag name="sculpin.data_provider" alias="projects_categories" />
+        </service>
+
+        <service id="sculpin_projects.projects_category_index_generator" class="%sculpin_projects.projects_category_index_generator.class%">
+            <argument type="service" id="sculpin.data_provider_manager" />
+            <argument>projects_categories</argument>
+            <argument>category</argument>
+            <argument>categoried_projects</argument>
+            <tag name="sculpin.generator" alias="projects_category_index" />
+        </service>
+    </services>
+
+</container>
