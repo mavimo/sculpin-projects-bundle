@@ -19,7 +19,7 @@ use Sculpin\Contrib\ProxySourceCollection\ProxySourceCollection;
  * @author Marco Vito Moscaritolo <marco@mavimo.org>
  * @author Beau Simensen <beau@dflydev.com>
  */
-class Posts extends ProxySourceCollection
+class Projects extends ProxySourceCollection
 {
     public function init()
     {
