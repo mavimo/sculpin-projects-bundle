@@ -16,9 +16,7 @@
         "symfony/config": "~2.1",
         "symfony/dependency-injection": "~2.1",
         "symfony/http-kernel": "~2.1",
-        "sculpin/taxonomy-contrib": "self.version",
-        "sculpin/proxy-source-collection-contrib": "self.version",
-        "sculpin/core": "self.version"
+        "sculpin/core": "*"
     },
     "autoload": {
         "psr-0": { "Mavimo\\Bundle\\ProjectsBundle": "" }
