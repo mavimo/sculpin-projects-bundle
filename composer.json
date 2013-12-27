@@ -15,8 +15,8 @@
         "php": ">=5.3.2"
     },
     "autoload": {
-        "psr-0": { "Mavimo\\Bundle\\ProjectsBundle": "" }
+        "psr-0": { "Mavimo\\Sculpin\\Bundle\\ProjectsBundle": "" }
     },
-    "target-dir": "Mavimo/Bundle/ProjectsBundle",
+    "target-dir": "Mavimo/Sculpin/Bundle/ProjectsBundle",
     "minimum-stability": "beta"
 }

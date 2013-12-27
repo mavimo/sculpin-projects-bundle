@@ -4,9 +4,9 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="sculpin_projects.project.class">Mavimo\Bundle\ProjectsBundle\Project</parameter>
+        <parameter key="sculpin_projects.project.class">Mavimo\Sculpin\Bundle\ProjectsBundle\Project</parameter>
         <parameter key="sculpin_projects.project_factory.class">Sculpin\Contrib\ProxySourceCollection\SimpleProxySourceItemFactory</parameter>
-        <parameter key="sculpin_projects.projects.class">Mavimo\Bundle\ProjectsBundle\Projects</parameter>
+        <parameter key="sculpin_projects.projects.class">Mavimo\Sculpin\Bundle\ProjectsBundle\Projects</parameter>
         <parameter key="sculpin_projects.projects_path_filter.class">Sculpin\Core\Source\Filter\AntPathFilter</parameter>
         <parameter key="sculpin_projects.projects_drafts_filter.class">Sculpin\Bundle\PostsBundle\PostsraftsFilter</parameter>
         <parameter key="sculpin_projects.projects_filter.class">Sculpin\Core\Source\Filter\ChainFilter</parameter>

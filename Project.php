@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Mavimo\Bundle\ProjectsBundle;
+namespace Mavimo\Sculpin\Bundle\ProjectsBundle;
 
 use Sculpin\Contrib\ProxySourceCollection\ProxySourceItem;
 

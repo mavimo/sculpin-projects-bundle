@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Mavimo\Bundle\ProjectsBundle;
+namespace Mavimo\Sculpin\Bundle\ProjectsBundle;
 
-use Mavimo\Bundle\ProjectsBundle\DependencyInjection\Compiler\ProjectsMapPass;
+use Mavimo\Sculpin\Bundle\ProjectsBundle\DependencyInjection\Compiler\ProjectsMapPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

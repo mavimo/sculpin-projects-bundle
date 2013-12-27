@@ -1,6 +1,6 @@
 <?php
 
-namespace Mavimo\Bundle\ProjectsBundle\DependencyInjection\Compiler;
+namespace Mavimo\Sculpin\Bundle\ProjectsBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Mavimo\Bundle\ProjectsBundle\DependencyInjection;
+namespace Mavimo\Sculpin\Bundle\ProjectsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
