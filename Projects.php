@@ -24,7 +24,7 @@ class Projects extends ProxySourceCollection
     public function init()
     {
         // We have special sorting rules for our items based on the date
-        // and title. This assumes that the items are actually Post instances.
+        // and title. This assumes that the items are actually Project instances.
         uasort($this->items, function ($a, $b) {
             return strnatcmp($b->date().' '.$b->title(), $a->date().' '.$a->title());
         });
