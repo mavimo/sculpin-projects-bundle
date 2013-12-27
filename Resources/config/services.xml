@@ -8,7 +8,7 @@
         <parameter key="sculpin_projects.project_factory.class">Sculpin\Contrib\ProxySourceCollection\SimpleProxySourceItemFactory</parameter>
         <parameter key="sculpin_projects.projects.class">Mavimo\Sculpin\Bundle\ProjectsBundle\Projects</parameter>
         <parameter key="sculpin_projects.projects_path_filter.class">Sculpin\Core\Source\Filter\AntPathFilter</parameter>
-        <parameter key="sculpin_projects.projects_drafts_filter.class">Sculpin\Bundle\PostsBundle\PostsraftsFilter</parameter>
+        <parameter key="sculpin_projects.projects_drafts_filter.class">Sculpin\Bundle\PostsBundle\PostsDraftsFilter</parameter>
         <parameter key="sculpin_projects.projects_filter.class">Sculpin\Core\Source\Filter\ChainFilter</parameter>
         <parameter key="sculpin_projects.projects_defaults_map.class">Sculpin\Core\Source\Map\DefaultDataMap</parameter>
         <parameter key="sculpin_projects.projects_calculated_date_from_filename_map.class">Sculpin\Core\Source\Map\CalculatedDateFromFilenameMap</parameter>
