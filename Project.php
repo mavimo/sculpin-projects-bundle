@@ -31,6 +31,11 @@ class Project extends ProxySourceItem
         return $this->data()->get('title');
     }
 
+    public function homepage()
+    {
+        return $this->data()->get('homepage');
+    }
+
     public function previousProject()
     {
         return $this->previousItem();
